@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title></title>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <link href="styles/bootstrap-flaty.css" rel="stylesheet" />
+    <link href="styles/css.css" rel="stylesheet" />
+    <script src="scripts/vendor/angular.js"></script>
+    <script src="scripts/vendor/angular-route.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/homeController.js"></script>
+    <script src="scripts/controllers/ownerController.js"></script>
+</head>
+<body>
+
+    <div class="container main-content">
+        <ng-view></ng-view>
+        <div class="row">
+            <footer class="col-md-3 col-md-offset-4">
+                <p>&copy; 2017</p>
+            </footer>
+        </div>
+
+    </div>
+
+</body>
+</html>

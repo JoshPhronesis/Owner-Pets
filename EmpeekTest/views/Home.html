@@ -1,0 +1,44 @@
+﻿<div class="col-md-8 col-md-offset-2" ng-controller="homeController">
+    <h1>All Users</h1>
+    <br />
+    <div class="col-md-offset-3">
+        <input type="text" class="form-control" ng-model="userName" placeholder="Enter pet owner's name" />
+        <button class="btn btn-default" ng-click="addUser(userName); userName=''">Add</button>
+    </div>
+    <hr />
+    <h4>Total Count: {{userDetails.length}}</h4>
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th ng-click="sortData('name')">Name <div ng-class="getSortClass('name')"></div></th>
+                <th ng-click="sortData(petsCount)">Pets Count <div ng-class="getSortClass('petsCount')"></div></th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr ng-repeat="userDetail in userDetails | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage| orderBy:sortColumn:reverseSort">
+                <td class="text-left"><a ng-href="owner/{{userDetail.Id}}" ng-model="userId" ng-init="userId=userDetail.Id">{{userDetail.Name}} </a></td>
+                <td class="text-left">
+                    {{userDetail.PetsCount}} <a class="btn btn-default pull-right" ng-click="deleteUser(userId)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="pagination-div center ">
+
+        <ul class="pagination">
+            <li ng-class="DisablePrevPage()">
+                <a href ng-click="prevPage()">« Prev</a>
+            </li>
+            <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                <a href="#">{{n+1}}</a>
+            </li>
+            <li ng-class="DisableNextPage()">
+                <a href ng-click="nextPage()">Next »</a>
+
+            </li>
+        </ul>
+
+    </div>
+   
+</div>

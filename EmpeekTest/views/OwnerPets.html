@@ -1,0 +1,47 @@
+﻿<div class="row" ng-app="myModule">
+    <div class="col-md-8 col-md-offset-2" ng-controller="ownerPetsController">
+        <h1>{{userPets[0].UserName}}s' Pets</h1>
+        <br />
+        <a href="home">Back to all Users</a>
+        <div class="col-md-offset-3">
+            <input type="text" class="form-control" ng-model="petName" placeholder="Enter pet's name" />
+            <!--<input type="hidden" ng-model="userId" ng-init="userId=userPets[0].UserId"/>-->
+            <button class="btn btn-default" ng-click="updateUserPet(userPets[0].UserId, petName); petName=''">Add</button>
+        </div>
+        <hr />
+            <h4>Total Count: {{userPets.petsCount}}</h4>
+        <table class="table-fill">
+            <thead>
+                <tr>
+                    <th ng-click="sortData('name')">Name <div ng-class="getSortClass('name')"></div></th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                <tr ng-if="userPets.petsCount!=0" ng-repeat="userPet in userPets | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage| orderBy:sortColumn:reverseSort">
+                    <td class="text-left" ng-model="petId" ng-init="petId=userPet.PetId">
+                        {{userPet.PetName}} <a class="btn btn-default pull-right" ng-click="deleteUserPet(userPet.UserId,petId)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <div class="pagination-div center ">
+
+            <ul class="pagination">
+                <li ng-class="DisablePrevPage()">
+                    <a href ng-click="prevPage()">« Prev</a>
+                </li>
+                <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                    <a href="#">{{n+1}}</a>
+                </li>
+                <li ng-class="DisableNextPage()">
+                    <a href ng-click="nextPage()">Next »</a>
+
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
